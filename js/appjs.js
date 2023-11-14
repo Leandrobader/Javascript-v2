@@ -41,6 +41,20 @@ document.write("<br>" + mensaje)
 
 //document.write("Esto es un document.write")
 
+let numero_1 = 15
+let numero_2 = 20
+let suma = numero_1 + numero_2
+console.log(numero_1 + numero_2);
+document.write("<br>" + (numero_1 + numero_2)) //si no le pongo los parentesis me los concatena porque detecta que el primero es string y los toma a todos como string
+document.write("<br> El resultado de la suma es: " + suma)
+
+//ALERT (PopUp) Tiene prioridad o mas peso que los document.write
+alert("Hola mundo con un ALERT");
+alert("El resultado de suma es: " + suma)
+alert("<br>" + (numero_1 + numero_2))
+
+
+
 
 
 
