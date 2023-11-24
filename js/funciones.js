@@ -80,3 +80,18 @@ const funcionCallback=(nombre, apellido, callback)=>{
 }
 
 funcionCallback("valentin","Quiroga",saludar);
+
+let arrOriginal=["perro", "gato","conejo","vaca","pajaro"]
+console.log("El array original es: ", arrOriginal)
+
+const filtro=(element, index)=>{
+    console.log("analizando el elemento de la posicion: ", index);
+    if(element!=="perro"){
+        return element;
+    }else{
+        return false;
+    }
+}
+
+let arrFilter = arrOriginal.filter((element, index)=> filtro(element, index))
+console.log("El array filtrado es: ", arrFilter);
