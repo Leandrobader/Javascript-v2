@@ -28,11 +28,15 @@ class Persona{
     }
 
     get GetDatos(){//obtener los valores
-        return `${this.name}, &{this.surName}, &{this.age}`
+        return `Datos: ${this.name}, ${this.surName}, ${this.age}`
     }
 
+    get getEdad(){
+        return `${this.age}`;
+    }
+//Los seters son para modificar valores y solo se puede ir cambiando de a un valor
     set SetName(newName){//Establecer los valores
-        this.name= newName;
+        this.name= newName;//
     }
 
     get getName(){
@@ -76,4 +80,54 @@ console.log(alan);
 
 alan.SetName = "Alan"
 console.log(alan.GetDatos);
+console.log(alan.getEdad);
+
+
+// class Alumno{
+//     constructor(nombre, apellido, edad, curso){
+//         this.nombre = nombre;
+//         this.apellido = apellido;
+//         this.edad = edad;
+//         this.curso = curso;
+//     }
+
+//     mostrarInformacion(){
+//         return `Nombre: ${this.nombre}, Apellido &{this.apellido}, Edad: ${this.edad}, Curso: ${this.curso}`
+//     }
+// }
+//HAREMOS QUE HEREDE DE LA CLASE PERSONA 
+class Alumno extends Persona{//PASAMOS A TENER DISPONIBLE TODOS LOS ATRIBUTOS Y METODOS DE LA CLASE PERSONA
+    constructor(nombre, apellido, edad, rol, curso){
+        super(nombre, apellido, edad);
+        this.rol = rol;
+        this.curso = curso;
+    };
+
+    // mostrarInformacionAlumno(){
+    //     console.log(`Hola mi nombre es ${this.name}, mi apellido es ${this.surName}, mi edad es ${this.age}Mi rol es ${this.rol} y mi curso es: ${this.curso}`);
+    // };
+    mostrarInformacion(){
+        console.log(`Hola mi nombre es ${this.name}, mi apellido es ${this.surName}, mi edad es ${this.age} Mi rol es ${this.rol} y mi curso es: ${this.curso}`);
+    }
+}
+
+const alumno = new Alumno("Leandro", "Bader", 33, "alumno", "Full Stack");
+alumno.saludar();
+alumno.mostrarInformacion()
+
+class Mentor extends Persona{
+    constructor(nombre, apellido, edad,materia){
+        super(nombre, apellido, edad);
+        this.rol = "Mentor"; //Le paso el valor fijo ya que todos seran mentores
+        this.materia = materia;
+    }
+        mostrarInformacion(){
+            console.log(`Hola mi nombre es ${this.name}, mi apellido es ${this.surName}, mi edad es ${this.age} Mi rol es ${this.rol} y dicto el curso de ${this.materia}`);
+        }
+    
+}
+
+const mentor = new Mentor("Hipolito", "Martinez",43,"JAVA");
+mentor.mostrarInformacion();
+
 

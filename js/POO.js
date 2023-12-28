@@ -48,7 +48,7 @@ const profesor2 = {
 console.log("Este es el objeto profesor -->",profesor);
 console.log("Este es el objeto tutor -->",tutor);
 
-//ACCEDER AL VALOR DE LOS ATRIBUTOS
+//ACCEDER AL VALOR DE LOS ATRIBUTOS (HAY DOS MANERAS DE ACCEDER)
 //1- OBJETO.PROPIEDAD
 //2- OBJETO["PROPIEDAD"]
 
@@ -92,12 +92,12 @@ console.log(profesor === profesor2); //false es porque hacen referencia a distin
 console.log(profesor.nombre == profesor2.nombre); //true porque compara los valores de cada propiedad
 
 const profesor1=profesor;
-console.log(profesor1 == profesor);//true
+console.log(profesor1 === profesor);//true
 
-//RECORRER LAS PROPIEDADES DE UN OBJETO
+//RECORRER LAS PROPIEDADES DE UN OBJETO (FOR IN)
 
-for (const value in profesor) {
-    console.log(value,profesor[value]);
+for (const value in profesor) { //value representa el nombre de la propiedad 
+    console.log(value,profesor[value]); //profesor[value] --> accedemos al valor de la propiedad
 }
 
 
