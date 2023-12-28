@@ -82,7 +82,7 @@ alan.SetName = "Alan"
 console.log(alan.GetDatos);
 console.log(alan.getEdad);
 
-
+//HERENCIA
 // class Alumno{
 //     constructor(nombre, apellido, edad, curso){
 //         this.nombre = nombre;
