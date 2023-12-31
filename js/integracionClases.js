@@ -61,6 +61,13 @@ class Sistema{
         }
     };
 
+    existeUsuarioPorDni(dni){
+        const prueba = element =>element.dni===dni
+        const exist = this.almacenamiento.some(prueba); //usamos el metodo some()
+        console.log(exist);
+        return exist;
+    };
+
     crearMentor(mentor){
         if (this.existeUsuario(mentor)) {
             console.log("El usuario ya existe");
@@ -122,12 +129,19 @@ class Sistema{
             console.log("Aun no hay registros de ALUMNOS");
         }
     };
+
+    eliminarRegistro(dni){
+        const almacenamientoActualiado = this.almacenamiento.filter((element)=>element.dni !== dni);
+        if (almacenamientoActualiado.length>0) {
+            this.almacenamiento = almacenamientoActualiado;
+        }
+    }
 }
 // AQUI INSTANCIAMOS LA CLASE SISTEMA
 const system = new Sistema();
 
 do {
-    let opcion = parseInt(prompt("Seleccione una opcion, 1- CREAR MENTOR, 2-CREAR ALUMNO, 3 LISTAR TODO, 4 LISTAR MENTORES, 5 LISTAR ALUMNOS"))
+    let opcion = parseInt(prompt("Seleccione una opcion, 1- CREAR MENTOR, 2-CREAR ALUMNO, 3 LISTAR TODO, 4 LISTAR MENTORES, 5 LISTAR ALUMNOS, 6 ELIMINAR UN REGISTRO"))
     switch (opcion) {
         case 1:
             let nombreM=prompt("ingrese el nombre")
@@ -160,6 +174,20 @@ do {
         case 5:
             system.listarAlumnos();
         break;
+
+        case 6:
+            let dniBuscado = prompt("por favor ingrese el dni del registro que desea eliminar");
+            const resultadoBusqueda = system.existeUsuarioPorDni(dniBuscado);
+            if (resultadoBusqueda) {
+                const eleccionUsuario = confirm("Seguro desea eliminar el registro?")
+                if (eleccionUsuario) {
+                    system.eliminarRegistro(dniBuscado);
+                    console.log("Exito se elimino el registro deseado!");
+                }
+            } else {
+                console.log("No se encontro el usuario");
+            }
+        break
         default:
             console.error("OPCION INGRESADA INVALIDA: INGRESO --> " + opcion);
             break;
@@ -177,4 +205,11 @@ localStorage.setItem("almacenamiento", JSON.stringify(system.almacenamiento));
  * 1-A- JSON.parse(localstorage.getItem(alamcenamiento))
  * 1-B- EN CASO QUE NO EXISTA (QUE DEVUEVA NULL) DEVEMOS CREAR EL LOCAL STORAGE --> localStorage.setItem("almacenamiento", JSON.stringify([])) --> LO CREAMOS Y GUARDAMOS UN ARRAY VACIO COMO STRING
  * 
+ * PASOS PARA ELIMINAR UN ALUMNO O MENTOR
+ * 
+ * 1- IDENTIFICAR EL USUARIO A ELIMINAR (POR DNI)
+ * 1-A ENCUENTRA EL USUARIO -->MOSTRAR UN MSJ DE CONFIRMACION -- EN CASO DE ACEPTAR PERSISTIR EL NUEVO ARRAY FILTRADO EL CUAL YA NO TIEENE EL USUSARIO QUE QUERIAMOS ELIMINAR Y MOSTRAR MSJ DE QUE SE ELIMINO. EN CASO DE QUE CANCELE MOSTAR EL MENSAJE DE QUE SI QUIERE SEGUIR OPERANDO
+ * 1-B NO ENCUENTRA EL USUSARIO --> MANDAR MSJ QUE DIGA QUE NO SE ENCONTRO
+ *
  */
+
